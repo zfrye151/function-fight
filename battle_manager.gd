@@ -63,37 +63,37 @@ func _build_problem(type: FunctionType) -> Dictionary:
 			return {
 				"type":          "RATIONAL",
 				"expression":    "%d/x" % c,
-				"derivative":    "-%d/x²" % c,
-				"antiderivative": "%d·ln|x| + C" % c,
+				"derivative":    "-%d/x^2" % c,
+				"antiderivative": "%dln|x| + C" % c,
 			}
 
 		FunctionType.EXPONENTIAL:
-			# f(x) = c·eˣ  (keeps answers clean)
+			# f(x) = c·e^x  (keeps answers clean)
 			return {
 				"type":          "EXPONENTIAL",
-				"expression":    "%deˣ" % c,
-				"derivative":    "%deˣ" % c,
-				"antiderivative": "%deˣ + C" % c,
+				"expression":    "%de^x" % c,
+				"derivative":    "%de^x" % c,
+				"antiderivative": "%de^x + C" % c,
 			}
 
 		FunctionType.LOGARITHMIC:
-			# f(x) = c·ln(x)
+			# f(x) = c*ln(x)
 			return {
 				"type":          "LOGARITHMIC",
-				"expression":    "%d·ln(x)" % c,
+				"expression":    "%dln(x)" % c,
 				"derivative":    "%d/x" % c,
-				"antiderivative": "%d(x·ln(x) - x) + C" % c,
+				"antiderivative": "%d(xln(x) - x) + C" % c,
 			}
 
 		FunctionType.TRIG:
 			# Pick from the six basic trig rules
 			var trig_cases: Array = [
-				{ "expr": "%d·sin(x)" % c, "deriv": "%d·cos(x)" % c,  "anti": "-%d·cos(x) + C" % c },
-				{ "expr": "%d·cos(x)" % c, "deriv": "-%d·sin(x)" % c, "anti": "%d·sin(x) + C" % c },
-				{ "expr": "%d·tan(x)" % c, "deriv": "%d·sec²(x)" % c, "anti": "%d·ln|sec(x)| + C" % c },
-				{ "expr": "%d·sec(x)" % c, "deriv": "%d·sec(x)tan(x)" % c, "anti": "%d·ln|sec(x)+tan(x)| + C" % c },
-				{ "expr": "%d·csc(x)" % c, "deriv": "-%d·csc(x)cot(x)" % c, "anti": "-%d·ln|csc(x)+cot(x)| + C" % c },
-				{ "expr": "%d·cot(x)" % c, "deriv": "-%d·csc²(x)" % c, "anti": "%d·ln|sin(x)| + C" % c },
+				{ "expr": "%dsin(x)" % c, "deriv": "%dcos(x)" % c,       "anti": "-%dcos(x) + C" % c },
+				{ "expr": "%dcos(x)" % c, "deriv": "-%dsin(x)" % c,      "anti": "%dsin(x) + C" % c },
+				{ "expr": "%dtan(x)" % c, "deriv": "%dsec^2(x)" % c,     "anti": "%dln|sec(x)| + C" % c },
+				{ "expr": "%dsec(x)" % c, "deriv": "%dsec(x)tan(x)" % c, "anti": "%dln|sec(x)+tan(x)| + C" % c },
+				{ "expr": "%dcsc(x)" % c, "deriv": "-%dcsc(x)cot(x)" % c,"anti": "-%dln|csc(x)+cot(x)| + C" % c },
+				{ "expr": "%dcot(x)" % c, "deriv": "-%dcsc^2(x)" % c,    "anti": "%dln|sin(x)| + C" % c },
 			]
 			var pick: Dictionary = trig_cases.pick_random()
 			return {
@@ -106,9 +106,9 @@ func _build_problem(type: FunctionType) -> Dictionary:
 		FunctionType.INVTRIG:
 			# Pick from three clean inverse-trig derivative rules
 			var inv_cases: Array = [
-				{ "expr": "%d·arcsin(x)" % c, "deriv": "%d/√(1−x²)" % c,  "anti": "%d(x·arcsin(x)+√(1−x²)) + C" % c },
-				{ "expr": "%d·arctan(x)" % c, "deriv": "%d/(1+x²)" % c,    "anti": "%d(x·arctan(x)−½ln(1+x²)) + C" % c },
-				{ "expr": "%d·arcsec(x)" % c, "deriv": "%d/(|x|√(x²−1))" % c, "anti": "complex form" },
+				{ "expr": "%darcsin(x)" % c, "deriv": "%d/sqrt(1-x^2)" % c,      "anti": "%d(xarcsin(x)+sqrt(1-x^2)) + C" % c },
+				{ "expr": "%darctan(x)" % c, "deriv": "%d/(1+x^2)" % c,           "anti": "%d(xarctan(x)-(1/2)ln(1+x^2)) + C" % c },
+				{ "expr": "%darcsec(x)" % c, "deriv": "%d/(|x|sqrt(x^2-1))" % c, "anti": "complex form" },
 			]
 			var pick: Dictionary = inv_cases.pick_random()
 			return {

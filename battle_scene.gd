@@ -274,7 +274,7 @@ func _evaluate_at_zero(p: Dictionary) -> String:
 		"CONSTANT":    return p["expression"]
 		"POLYNOMIAL":  return "0"
 		"RATIONAL":    return "undefined (division by zero)"
-		"EXPONENTIAL": return p["expression"].replace("eˣ", "e⁰ = 1")
+		"EXPONENTIAL": return p["expression"].replace("e^x", "e^0 = 1")
 		"LOGARITHMIC": return "undefined (ln(0))"
 		"TRIG":        return _trig_at_zero(p["expression"])
 		"INVTRIG":     return _invtrig_at_zero(p["expression"])
