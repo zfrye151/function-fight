@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://cpla2x4ffl8jv"]
+
+[ext_resource type="Script" uid="uid://br3r1x6qxy3q2" path="res://title_screen.gd" id="1_1xr1c"]
+[ext_resource type="StyleBox" uid="uid://bw1jmeyqwgkp8" path="res://Fonts/BlackWhiteBorder.tres" id="1_fnlyl"]
+[ext_resource type="FontFile" uid="uid://bn6g88ruibxs4" path="res://Fonts/ByteBounce.ttf" id="3_tu0on"]
+[ext_resource type="AudioStream" uid="uid://chfctcvobat1c" path="res://Sound/titleMusic.mp3" id="4_tu0on"]
+
+[node name="TitleScreen" type="Node2D" unique_id=1783639773]
+script = ExtResource("1_1xr1c")
+
+[node name="Panel" type="Panel" parent="." unique_id=95804310]
+offset_right = 1280.0
+offset_bottom = 720.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("1_fnlyl")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=345508485]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -74.5
+offset_right = 74.5
+offset_bottom = 492.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer" unique_id=74290475]
+custom_minimum_size = Vector2(0, 480)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_tu0on")
+theme_override_font_sizes/font_size = 96
+text = "Function Fighter"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Panel/VBoxContainer" unique_id=1758821481]
+custom_minimum_size = Vector2(240, 120)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("3_tu0on")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = ExtResource("1_fnlyl")
+text = "Play"
+
+[node name="Label" type="Label" parent="Panel" unique_id=99586755]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -156.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_tu0on")
+theme_override_font_sizes/font_size = 48
+text = "by Zach Frye"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=925390331]
+stream = ExtResource("4_tu0on")
+autoplay = true
+parameters/looping = true
+
+[connection signal="pressed" from="Panel/VBoxContainer/Button" to="." method="_on_button_pressed"]

@@ -1,0 +1,213 @@
+[gd_scene format=3 uid="uid://djq4610o35a6t"]
+
+[ext_resource type="FontFile" uid="uid://bn6g88ruibxs4" path="res://Fonts/ByteBounce.ttf" id="1_b278l"]
+[ext_resource type="Script" uid="uid://bqajl5tkyvtrw" path="res://battle_scene.gd" id="1_hvnqj"]
+[ext_resource type="StyleBox" uid="uid://bw1jmeyqwgkp8" path="res://Fonts/BlackWhiteBorder.tres" id="2_hvnqj"]
+[ext_resource type="PackedScene" uid="uid://bjde6p8sii3vq" path="res://BattleManager.tscn" id="4_musxc"]
+[ext_resource type="AudioStream" uid="uid://dh4ivlaignj4f" path="res://Sound/chiptuneMusic.mp3" id="5_teshm"]
+[ext_resource type="AudioStream" uid="uid://e5wuqaacu2s7" path="res://Sound/hitSound.mp3" id="6_donlu"]
+[ext_resource type="AudioStream" uid="uid://baguqt77luvuc" path="res://Sound/hurtSound.mp3" id="7_xj46k"]
+[ext_resource type="AudioStream" uid="uid://cw7bmkyslh8ne" path="res://Sound/winSound.mp3" id="8_qysdf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_musxc"]
+bg_color = Color(0.24788144, 0.00010030448, 0.2830489, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1kwy5"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p7713"]
+bg_color = Color(0.2231029, 0.2231029, 0.22310278, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bbyex"]
+bg_color = Color(0.35531357, 0.35531357, 0.35531345, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+
+[node name="BattleScene" type="Control" unique_id=1219449180]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hvnqj")
+
+[node name="MainLayout" type="VBoxContainer" parent="." unique_id=1677485240]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="ArenaPanel" type="PanelContainer" parent="MainLayout" unique_id=2089632656]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 4)
+theme_override_styles/panel = ExtResource("2_hvnqj")
+
+[node name="Arena" type="Control" parent="MainLayout/ArenaPanel" unique_id=87783896]
+custom_minimum_size = Vector2(0, 480)
+layout_mode = 2
+
+[node name="EnemyContainer" type="VBoxContainer" parent="MainLayout/ArenaPanel/Arena" unique_id=1418426694]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EnemyHealth" type="ProgressBar" parent="MainLayout/ArenaPanel/Arena/EnemyContainer" unique_id=423281614]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_b278l")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/fill = SubResource("StyleBoxFlat_musxc")
+
+[node name="EnemyMathLabel" type="RichTextLabel" parent="MainLayout/ArenaPanel/Arena/EnemyContainer" unique_id=1325147882]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("1_b278l")
+theme_override_fonts/bold_font = ExtResource("1_b278l")
+theme_override_fonts/bold_italics_font = ExtResource("1_b278l")
+theme_override_fonts/italics_font = ExtResource("1_b278l")
+theme_override_fonts/mono_font = ExtResource("1_b278l")
+theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/bold_font_size = 48
+theme_override_font_sizes/bold_italics_font_size = 48
+theme_override_font_sizes/italics_font_size = 48
+theme_override_font_sizes/mono_font_size = 48
+bbcode_enabled = true
+fit_content = true
+vertical_alignment = 1
+
+[node name="PlayerContainer" type="VBoxContainer" parent="MainLayout/ArenaPanel/Arena" unique_id=731911192]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="PlayerName" type="Label" parent="MainLayout/ArenaPanel/Arena/PlayerContainer" unique_id=1540569687]
+layout_mode = 2
+
+[node name="PlayerHealth" type="ProgressBar" parent="MainLayout/ArenaPanel/Arena/PlayerContainer" unique_id=660512995]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 6
+offset_transform_enabled = true
+offset_transform_position = Vector2(30, 0)
+theme_override_fonts/font = ExtResource("1_b278l")
+theme_override_font_sizes/font_size = 48
+
+[node name="ControlPanel" type="PanelContainer" parent="MainLayout" unique_id=983021227]
+custom_minimum_size = Vector2(0, 240)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1kwy5")
+
+[node name="UIContainer" type="MarginContainer" parent="MainLayout/ControlPanel" unique_id=1450419127]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="PanelLayout" type="HBoxContainer" parent="MainLayout/ControlPanel/UIContainer" unique_id=180766892]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="DialogText" type="RichTextLabel" parent="MainLayout/ControlPanel/UIContainer/PanelLayout" unique_id=777292756]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("1_b278l")
+theme_override_fonts/bold_font = ExtResource("1_b278l")
+theme_override_fonts/bold_italics_font = ExtResource("1_b278l")
+theme_override_fonts/italics_font = ExtResource("1_b278l")
+theme_override_fonts/mono_font = ExtResource("1_b278l")
+bbcode_enabled = true
+
+[node name="ActionGrid" type="GridContainer" parent="MainLayout/ControlPanel/UIContainer/PanelLayout" unique_id=545672939]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+columns = 2
+
+[node name="DiffButton" type="Button" parent="MainLayout/ControlPanel/UIContainer/PanelLayout/ActionGrid" unique_id=2046609432]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_b278l")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = ExtResource("2_hvnqj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_p7713")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bbyex")
+text = "Differentiate"
+
+[node name="IntButton" type="Button" parent="MainLayout/ControlPanel/UIContainer/PanelLayout/ActionGrid" unique_id=1773073167]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_b278l")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = ExtResource("2_hvnqj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_p7713")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bbyex")
+text = "Integrate"
+
+[node name="LogButton" type="Button" parent="MainLayout/ControlPanel/UIContainer/PanelLayout/ActionGrid" unique_id=357255992]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_b278l")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = ExtResource("2_hvnqj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_p7713")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bbyex")
+text = "Natural Log"
+
+[node name="EvalButton" type="Button" parent="MainLayout/ControlPanel/UIContainer/PanelLayout/ActionGrid" unique_id=136442888]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_b278l")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = ExtResource("2_hvnqj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_p7713")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bbyex")
+text = "Evaluate x=0"
+
+[node name="BattleManager" parent="." unique_id=1479643294 instance=ExtResource("4_musxc")]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1001157428]
+stream = ExtResource("5_teshm")
+autoplay = true
+parameters/looping = true
+
+[node name="HitSound" type="AudioStreamPlayer" parent="." unique_id=1869379347]
+stream = ExtResource("6_donlu")
+
+[node name="HurtSound" type="AudioStreamPlayer" parent="." unique_id=504826869]
+stream = ExtResource("7_xj46k")
+
+[node name="WinSound" type="AudioStreamPlayer" parent="." unique_id=152054713]
+stream = ExtResource("8_qysdf")
